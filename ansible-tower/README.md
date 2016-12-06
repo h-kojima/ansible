@@ -37,9 +37,10 @@ Playbookを実行するために必要な認証情報です。SSH鍵やクラウ
 ただし、複数の認証情報を1つのCredentialとして登録することはできません。  
 
 ・Job  
-Job Templateを利用したPlaybookの実行や実行履歴を管理します。また、JobのスケジューリングもWebブラウザで設定できます。
+Job Templateを利用したPlaybookの実行や実行履歴を管理します。  
+また、JobのスケジューリングもWebブラウザで設定できます。
 
-・Organization
+・Organization  
 上記項目の管理単位となる項目です。  
 Ansible Towerのユーザは割り当てられたOrganizationの中で、上記項目を設定していきます。
 
