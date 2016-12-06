@@ -30,5 +30,6 @@ Step3. Ansible Towerのadminユーザのパスワードを設定して、`http:/
 
 Step4. ライセンス入力画面が表示されますので、ライセンス(評価版を利用する場合は[こちら](https://www.ansible.com/license)から入手可能)情報を入力すると、Ansible Towerのダッシュボードが表示されます。
 
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard.png" width="50%" height="50%">
 
 ## Ansible Towerの使い方
