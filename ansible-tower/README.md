@@ -80,7 +80,8 @@ Step2. Ansible Towerサーバ接続に必要な情報を設定します。この
 ```
 
 ### Playbookの実行例
-この例では、ある部署が管理しているホストに対して、ユーザを作成するための簡単なPlaybookを実行することを想定します。
+この例では、ある部署が管理しているホストに対して、  
+ユーザを作成するための簡単なPlaybookを実行することを想定します。
 
 Step1. Organization/Inventory/Credentialを作成します。
 
@@ -127,3 +128,20 @@ GUIからダウンロードもできます。
   == ============ ======================== ========== ======= 
 ```
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/job.png" width="50%" height="50%">
+
+### ローカルユーザの作成
+各部署のサーバ管理者に、Ansible Towerで扱う「部署」(Organization)の管理権限を割り当てると、  
+サーバ管理者に割り当てられたサーバのみを、Ansible Towerで管理できるようになります。  
+  
+この場合は、上記手順で作成した「Org01」をサーバ管理者に割り当てます。
+
+```
+  # tower-cli user create --username $USER01 --password $PASSWORD --email $USER01_MAIL_ADDRESS
+  # tower-cli organization associate_admin --user $USER01 --organization Org01
+```
+
+これにより、「$USER01」ユーザでAnsible Towerにログインすると、「Org01」に関する情報のみが表示されていて、  
+他のOrganizationに関する情報(Jobの実行結果など)が隠蔽されていることを確認できます。  
+「$USER01」ユーザは「Org01」の中で、Credential/Inventory/Projectの作成・編集ができるようになり、  
+自身が管理する認証情報/Playbook/サーバ情報の登録・修正ができるようになります。
+
