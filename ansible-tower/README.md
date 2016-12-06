@@ -185,7 +185,7 @@ Webブラウザからダウンロードすることもできます。
 「$USER01」ユーザは「Org01」の中で、Credential/Inventory/Projectの作成・編集ができるようになり、  
 自身が管理する認証情報/Playbook/ホスト情報の登録・修正ができるようになります。  
   
-なお、ユーザ認証にはローカルで作成する他にも、OAuth2/SAML/RADIUS/LDAPの情報を利用できます。  
+なお、ユーザ認証にはローカルで作成する他に、OAuth2/SAML/RADIUS/LDAPも利用できます。  
 詳細は[こちら](http://docs.ansible.com/ansible-tower/latest/html/administration/social_auth.html)をご参照ください。
 
 ### Inventoryのインポート/Dynamic Inventory
