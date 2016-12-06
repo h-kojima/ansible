@@ -189,7 +189,7 @@ Scan Jobを実行して、GUIのInventoryからSYSTEM TRACKINGを選択すると
 ここでScan実行時の差分情報を確認できます。
 
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-02.png" width="100%" height="100%">
-
+    
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-03.png" width="100%" height="100%">
-
+    
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-04.png" width="100%" height="100%">
