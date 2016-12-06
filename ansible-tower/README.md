@@ -178,11 +178,11 @@ Ansible TowerのエンジンはAnsibleなので、[Ansibleと同じく`ansible.c
 
 ### Scan Job
 
-Ansible Towerに組み込まれたPlaybook`/var/lib/awx/venv/tower/lib/python2.7/site-packages/awx/playbooks/scan_facts.yml`を利用して、管理対象のホストの情報(パッケージ/サービス/HW情報)を取得してWebブラウザで確認できます。  
+Ansible Towerに組み込まれたPlaybook`/var/lib/awx/venv/tower/lib/python2.7/site-packages/awx/playbooks/scan_facts.yml`を利用して、  
+管理対象のホストの情報(パッケージ/サービス/HW情報)を取得してWebブラウザで確認できます。  
 Scan Jobも上記と同様にJob Templateを作成して、Jobを実行します。  
 Scan Jobの設定はGUIで行う必要があります。管理対象のシステム要件や設定方法は[こちら](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#scan-job-templates)をご参照ください。  
-
-Scan Jobを実行して、GUIのInventoryからSYSTEM TRACKINGを選択すると次のような画面を確認できます。
+Scan Jobを実行して、GUIの「Inventory」からホストを選択して、「SYSTEM TRACKING」を選択すると次のような画面を確認できます。
 
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-01.png" width="100%" height="100%">
 
