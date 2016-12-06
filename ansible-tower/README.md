@@ -31,8 +31,8 @@ Ansible TowerはオープンソースのAnsibleによる各種自動処理を管
 ・Ansibleの知識をあまり知らなくても、開発者が用意したPlaybookを誰でもWebブラウザから簡単に実行できるようにしたい。
 
 Ansible Towerの基盤にはAnsibleを利用していますが、Ansibleの代替品ではありませんので、  
-現段階では、汎用性を考えてAnsibleだけでできること([条件分岐](http://docs.ansible.com/ansible/playbooks_conditionals.html)や[GitHubのサービスフック](http://docs.ansible.com/ansible/github_hooks_module.html)など)は可能な限り  
-Ansibleだけで実行する方がいいでしょう。
+現段階では、汎用性を考えてAnsibleだけでできること([条件分岐](http://docs.ansible.com/ansible/playbooks_conditionals.html)や[GitHubのサービスフックの利用](http://docs.ansible.com/ansible/github_hooks_module.html)など)  
+は可能な限りAnsibleだけで実行する方がいいでしょう。
 
 ## Ansible Tower関連用語
 
