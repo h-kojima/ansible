@@ -49,7 +49,7 @@ Step3. Ansible Towerのadminユーザのパスワードを設定して、`http:/
 
 Step4. ライセンス入力画面が表示されますので、ライセンス(評価版を利用する場合は[こちら](https://www.ansible.com/license)から入手可能)を入力すると、Ansible Towerのダッシュボードが表示されます。
 
-<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard.png" width="50%" height="50%">
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard.png" width="100%" height="100%">
 
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
@@ -184,8 +184,12 @@ Scan Jobの設定はGUIで行う必要があります。管理対象のシステ
 
 Scan Jobを実行して、GUIのInventoryからSYSTEM TRACKINGを選択すると次のような画面を確認できます。
 
-<>
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-01.png" width="100%" height="100%">
 
-Scan実行時の差分情報は赤く表示されます。
+ここでScan実行時の差分情報を確認できます。
 
-<>
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-02.png" width="100%" height="100%">
+
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-03.png" width="100%" height="100%">
+
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-04.png" width="100%" height="100%">
