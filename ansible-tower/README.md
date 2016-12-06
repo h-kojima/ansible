@@ -126,4 +126,4 @@ GUIからダウンロードもできます。
    3            7 2016-12-06T10:30:48.357Z successful   10.03
   == ============ ======================== ========== ======= 
 ```
-<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard.png" width="50%" height="50%">
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/job.png" width="50%" height="50%">
