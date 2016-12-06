@@ -22,7 +22,17 @@
 # Ansible Tower
 
 ## Ansible Towerの概要
-Ansible Tower
+Ansible TowerはオープンソースのAnsibleによる各種自動処理を管理するための企業向けソフトウェアです。権限管理、ジョブスケジューラ、ジョブの実行記録といった機能を備えています。Ansible Towerは主に次のような状況で威力を発揮します。  
+  
+・Ansibleによる自動化は導入したものの、Playbook/Inventoryファイルが乱立しているため、管理コストが増えている。  
+どの部署が何のPlaybook/Inventoryを管理しているかを、改めて整理して可視化したい。  
+・Ansibleによる実行処理結果を可視化したい。  
+その際に自分の部署に関係ないものを見たくない、または、関係あるものを見せたくない。  
+・Ansibleの知識をあまり知らなくても、開発者が用意したPlaybookを誰でもWebブラウザから簡単に実行できるようにしたい。
+
+Ansible Towerの基盤にはAnsibleを利用していますが、Ansibleの代替品ではありませんので、  
+現段階では、汎用性を考えてAnsibleだけでできること([条件分岐](http://docs.ansible.com/ansible/playbooks_conditionals.html)や[GitHubのサービスフック](http://docs.ansible.com/ansible/github_hooks_module.html)など)は可能な限り  
+Ansibleだけで実行する方がいいでしょう。
 
 ## Ansible Tower関連用語
 
@@ -144,7 +154,7 @@ GUIからJobのスケジューリング設定をしたい場合は、[こちら]
   # tower-cli job_template create --name job-user-create01 --job-type run --inventory Inv01 --project Project01 --playbook user-create.yaml --machine-credential Cred01
   # tower-cli job launch --job-template job-user-create01
 ```
-
+JobはWebブラウザから実行することもできます。その場合は、Job Templateの横にあるロケットアイコンをクリックします。  
 実行結果の情報はCLI/GUIで確認できます。  
 実行結果は、`/var/lib/awx/job_status/`に$JOB_ID-$UUID.outという名前で保存されます。  
 Webブラウザからダウンロードすることもできます。
