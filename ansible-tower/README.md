@@ -23,7 +23,7 @@ Ansible Tower
 
 ## Ansible Towerのインストール (ver. 3.0.3の情報)
 Step1. 最新版のRHEL7またはCentOS7サーバを1台(物理でも仮想でも可)用意します。  
-システム要件は[こちら](http://docs.ansible.com/ansible-tower/latest/html/installandreference/requirements_refguide.html)をご参照ください。
+システム要件は[こちら](http://docs.ansible.com/ansible-tower/latest/html/installandreference/requirements_refguide.html)をご参照ください。  
 RHEL7の場合は、Baseチャネルの他にもExtraチャネルの利用が必要です。
 
 ```
@@ -79,4 +79,51 @@ Step2. Ansible Towerサーバ接続に必要な情報を設定します。この
   == ======== ================= ========== ========= ============ ================= 
 ```
 
-### Ansible Towerの
+### Playbookの実行例
+この例では、ある部署が管理しているホストに対して、ユーザを作成するための簡単なPlaybookを実行することを想定します。
+
+Step1. Organization/Inventory/Credentialを作成します。
+
+```
+  # tower-cli organization create --name Org01
+  # tower-cli inventory create --name Inv01 --organization Org01
+  # tower-cli host create --name $MANAGED_SERVER1 --inventory Inv01
+  # ssh-keygen -f /root/.ssh/id_rsa -N ''
+  # ssh-copy-id root@$MANAGED_SERVER1
+  # tower-cli credential create --name Cred01 --organization Org01 --kind ssh --ssh-key-data /root/.ssh/id_rsa
+```
+
+Step2. PlaybookとProjectを作成します。
+
+```
+  # mkdir -p /var/lib/awx/projects/sample-project01
+  # cat << EOF  > /var/lib/awx/projects/sample-project01/user-create.yaml
+  ---
+  - hosts: all
+    tasks:
+      - name: create user
+        user: name=james
+  EOF
+  # tower-cli project create --name Project01 --organization Org01 --scm-type manual --local-path sample-project01
+```
+
+Step3. Job Templateを作成してJobを実行します。
+
+```
+  # tower-cli job_template create --name job-user-create01 --job-type run --inventory Inv01 --project Project01 --playbook user-create.yaml --machine-credential Cred01
+  # tower-cli job launch --job-template job-user-create01
+```
+
+実行結果の情報はCLI/GUIで確認できます。  
+実行結果は、`/var/lib/awx/job_status/`に$JOB_ID-$UUID.outという名前で保存されます。  
+GUIからダウンロードもできます。
+
+```
+  # tower-cli job list
+  == ============ ======================== ========== ======= 
+  id job_template         created            status   elapsed 
+  == ============ ======================== ========== ======= 
+   3            7 2016-12-06T10:30:48.357Z successful   10.03
+  == ============ ======================== ========== ======= 
+```
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard.png" width="50%" height="50%">
