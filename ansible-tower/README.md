@@ -13,7 +13,8 @@
     - [Inventoryのインポート/Dynamic Inventory](#inventory%E3%81%AE%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88dynamic-inventory)
     - [Jobの並列度の設定](#job%E3%81%AE%E4%B8%A6%E5%88%97%E5%BA%A6%E3%81%AE%E8%A8%AD%E5%AE%9A)
     - [Scan Job](#scan-job)
-  - [Official Documents](#official documents)
+  - [Official Documents](#official-documents)
+  - [Revision History](#revision-history)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -219,3 +220,7 @@ Scan Jobを実行して、GUIの「Inventory」からホストを選択して、
 ## Official Documents
 
 英語の公式ドキュメントが[こちら](http://docs.ansible.com/ansible-tower/index.html)になります。日本語化はされていません。
+
+## Revision History
+
+2016-12-07 初版リリース
