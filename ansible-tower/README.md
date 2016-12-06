@@ -28,8 +28,9 @@ Ansible TowerはオープンソースのAnsibleによる各種自動処理を管
 どの部署が何のPlaybook/Inventoryを管理しているかを、改めて整理して可視化したい。  
 ・Ansibleによる実行処理(誰がいつ何を実行して結果はどうだったか)を可視化して、ログとして残したい。  
 その際に自分の部署に関係ないものを見たくない、または、関係あるものを見せたくない。  
-・Ansibleの知識をあまり知らなくても、開発者が用意したPlaybookを誰でもWebブラウザから簡単に実行できるようにしたい。
-
+・Ansibleの知識をあまり知らなくても、開発者が用意したPlaybookを誰でもWebブラウザから簡単に実行できるようにしたい。  
+・管理対象のホスト情報を可視化して、Playbookによる変更履歴を追跡したい。  
+  
 Ansible Towerの基盤にはAnsibleを利用していますが、Ansibleの代替品ではありませんので、  
 現段階では、汎用性を考えてAnsibleだけでできること([条件分岐](http://docs.ansible.com/ansible/playbooks_conditionals.html)や[GitHubのサービスフックの利用](http://docs.ansible.com/ansible/github_hooks_module.html)など)  
 は可能な限りAnsibleだけで実行する方がいいでしょう。
