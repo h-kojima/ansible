@@ -53,7 +53,7 @@ Step4. ライセンス入力画面が表示されますので、ライセンス(
 
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
-Ansible TowerはGUIで色々な設定ができますが、管理作業の効率化を考えてCLI(tower-cli)の利用を推奨します。
+Ansible TowerはGUIで色々な設定ができますが、管理作業の効率化を考えて基本的にはCLI(tower-cli)の利用を推奨します。
 
 ### Ansible Tower CLIのセットアップ
 
@@ -171,9 +171,21 @@ AWS上で管理しているホスト情報の同期を取るようにします�
 # tower-cli group sync ec2-Group01
 ```
 
-### Scan Job
-
 ### Jobの並列度の設定
 
 Ansible TowerのエンジンはAnsibleなので、[Ansibleと同じく`ansible.cfg`の`forks`で設定](http://docs.ansible.com/ansible-tower/latest/html/userguide/jobs.html#job-concurrency)します。  
 デフォルトの値は5です。
+
+### Scan Job
+
+Ansible Towerに組み込まれたPlaybook`/var/lib/awx/venv/tower/lib/python2.7/site-packages/awx/playbooks/scan_facts.yml`を利用して、管理対象のホストの情報(パッケージ/サービス/HW情報)を取得してWebブラウザで確認できます。  
+Scan Jobも上記と同様にJob Templateを作成して、Jobを実行します。  
+Scan Jobの設定はGUIで行う必要があります。管理対象のシステム要件や設定方法は[こちら](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#scan-job-templates)をご参照ください。  
+
+Scan Jobを実行して、GUIのInventoryからSYSTEM TRACKINGを選択すると次のような画面を確認できます。
+
+<>
+
+Scan実行時の差分情報は赤く表示されます。
+
+<>
