@@ -18,8 +18,24 @@
 ## Ansible Towerの概要
 Ansible Tower
 
-## Ansible Towerのアーキテクチャ
+## Ansible Tower関連用語
 
+・Inventory  
+Playbookの実行対象となるホスト郡です。Ansible Towerでは、Inventory単位でPlaybookの実行対象を指定します。  
+
+・Project  
+Ansible Towerで実行するPlaybookを管理します。Playbookの格納先は、Manual(Ansible Towerのローカルディレクトリ)/Git/Subversion/Mercurialを指定出来ます。Ansible TowerのJobとしてPlaybookを実行するためには、Project/Credential/Inventoryを紐付けたJob Templateを作成する必要があります。  
+
+・Credential  
+Playbookを実行するために必要な認証情報です。SSH鍵やクラウドプロバイダの認証情報を登録できます。  
+ただし、複数の認証情報を1つのCredentialとして登録することはできません。  
+
+・Job  
+Job Templateを利用したPlaybookの実行や実行履歴を管理します。また、JobのスケジューリングもWebブラウザで設定できます。
+
+・Organization
+上記項目の管理単位となる項目です。  
+Ansible Towerのユーザは割り当てられたOrganizationの中で、上記項目を設定していきます。
 
 ## Ansible Towerのインストール (ver. 3.0.3の情報)
 Step1. 最新版のRHEL7またはCentOS7サーバを1台(物理でも仮想でも可)用意します。  
@@ -83,7 +99,8 @@ Step2. Ansible Towerサーバ接続に必要な情報を設定します。この
 この例では、ある部署が管理しているホストに対して、  
 ユーザを作成するための簡単なPlaybookを実行することを想定します。
 
-Step1. Organization/Inventory/Credentialを作成します。
+Step1. 部署/ホスト/認証情報に相当する、Organization/Inventory/Credentialを作成します。  
+管理対象のホストにはSSH公開鍵を配布し、ペアになるSSH秘密鍵をCredentialとして登録します。
 
 ```
   # tower-cli organization create --name Org01
@@ -108,14 +125,14 @@ Step2. PlaybookとProjectを作成します。
   # tower-cli project create --name Project01 --organization Org01 --scm-type manual --local-path sample-project01
 ```
 
-また、Projectとして登録するPlaybookは、GitHub/GitLab/Mercurial/Subversion上のものも指定できます。  
+また、Projectとして登録するPlaybookは、GitHubのものも指定できます。  
 
 ```
   # tower-cli project create --name Project02 --organization Org01 --scm-type git --scm-url https://github.com/ansible/tower-example
 ```
 
 Step3. Job Templateを作成してJobを実行します。Jobの実行をスケジューリングしたい場合は、cronなどを利用します。
-
+GUIからJobのスケジューリング設定をしたい場合は、[こちら](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#scheduling)をご参照ください。
 ```
   # tower-cli job_template create --name job-user-create01 --job-type run --inventory Inv01 --project Project01 --playbook user-create.yaml --machine-credential Cred01
   # tower-cli job launch --job-template job-user-create01
