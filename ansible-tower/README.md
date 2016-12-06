@@ -108,7 +108,13 @@ Step2. PlaybookとProjectを作成します。
   # tower-cli project create --name Project01 --organization Org01 --scm-type manual --local-path sample-project01
 ```
 
-Step3. Job Templateを作成してJobを実行します。
+また、Projectとして登録するPlaybookは、GitHub/GitLab/Mercurial/Subversion上のものも指定できます。  
+
+```
+  # tower-cli project create --name Project02 --organization Org01 --scm-type git --scm-url https://github.com/ansible/tower-example
+```
+
+Step3. Job Templateを作成してJobを実行します。Jobの実行をスケジューリングしたい場合は、cronなどを利用します。
 
 ```
   # tower-cli job_template create --name job-user-create01 --job-type run --inventory Inv01 --project Project01 --playbook user-create.yaml --machine-credential Cred01
@@ -127,7 +133,7 @@ GUIからダウンロードもできます。
    3            7 2016-12-06T10:30:48.357Z successful   10.03
   == ============ ======================== ========== ======= 
 ```
-<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/job.png" width="50%" height="50%">
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/job.png" width="100%" height="100%">
 
 ### ローカルユーザの作成
 各部署のサーバ管理者に、Ansible Towerで扱う「部署」(Organization)の管理権限を割り当てると、  
@@ -143,5 +149,31 @@ GUIからダウンロードもできます。
 これにより、「$USER01」ユーザでAnsible Towerにログインすると、「Org01」に関する情報のみが表示されていて、  
 他のOrganizationに関する情報(Jobの実行結果など)が隠蔽されていることを確認できます。  
 「$USER01」ユーザは「Org01」の中で、Credential/Inventory/Projectの作成・編集ができるようになり、  
-自身が管理する認証情報/Playbook/サーバ情報の登録・修正ができるようになります。
+自身が管理する認証情報/Playbook/ホスト情報の登録・修正ができるようになります。
 
+### Inventoryのインポート/Dynamic Inventory
+
+既存のInventoryファイルのインポートやAnsibleの[Dynamic Inventory](http://docs.ansible.com/ansible/intro_dynamic_inventory.html)が利用できますので、Inventoryへのホスト情報の登録コストの削減ができます。 
+  
+・Inventoryのインポート
+
+```
+  # tower-manage inventory_import --inventory-name=Inv02 --source=$INVENTORY_FILE_OR_DIRECTORY
+```  
+・Dynamic Inventory (AWSの例)
+
+Ansible Towerの既存のInventoryに「ec2-Group01」という名前のグループを追加し、  
+AWS上で管理しているホスト情報の同期を取るようにします。
+
+```
+# tower-cli credential create --name ec2-Cred01 --kind aws --username $AWS_ACCESS_KEY --password $AWS_SECRET_KEY
+# tower-cli group create --name ec2-Group01 --source ec2 --credential ec2-Cred01 --inventory $INVENTORY_NAME --update-on-launch true --overwrite true 
+# tower-cli group sync ec2-Group01
+```
+
+### Scan Job
+
+### Jobの並列度の設定
+
+Ansible TowerのエンジンはAnsibleなので、[Ansibleと同じく`ansible.cfg`の`forks`で設定](http://docs.ansible.com/ansible-tower/latest/html/userguide/jobs.html#job-concurrency)します。  
+デフォルトの値は5です。
