@@ -155,7 +155,8 @@ GUIからJobのスケジューリング設定をしたい場合は、[こちら]
   # tower-cli job_template create --name job-user-create01 --job-type run --inventory Inv01 --project Project01 --playbook user-create.yaml --machine-credential Cred01
   # tower-cli job launch --job-template job-user-create01
 ```
-JobはWebブラウザから実行することもできます。その場合は、Job Templateの横にあるロケットアイコンをクリックします。  
+JobはWebブラウザから実行することもできます。  
+その場合は、Job Templateの横にあるロケットアイコンをクリックします。  
 実行結果の情報はCLI/GUIで確認できます。  
 実行結果は、`/var/lib/awx/job_status/`に$JOB_ID-$UUID.outという名前で保存されます。  
 Webブラウザからダウンロードすることもできます。
@@ -185,6 +186,16 @@ Webブラウザからダウンロードすることもできます。
 他のOrganizationに関する情報(Jobの実行結果など)が隠蔽されていることを確認できます。  
 「$USER01」ユーザは「Org01」の中で、Credential/Inventory/Projectの作成・編集ができるようになり、  
 自身が管理する認証情報/Playbook/ホスト情報の登録・修正ができるようになります。  
+  
+また、システム監査用のユーザ(view権限のみを持つユーザ)も作成できます。
+
+```
+  # tower-cli user create --username $AUDITOR_USER --password $PASSWORD --email $AUDITOR_USER_MAIL_ADDRESS
+  # tower-cli user modify --username $AUDITOR_USER --is-system-auditor true
+```
+  
+このユーザは、Ansible Towerで持っている全リソース情報(Organization/Project/Jobなど)を確認できます。  
+リソースの作成・編集やJobの実行はできません。
   
 なお、ユーザ認証にはローカルで作成する他に、OAuth2/SAML/RADIUS/LDAPも利用できます。  
 詳細は[こちら](http://docs.ansible.com/ansible-tower/latest/html/administration/social_auth.html)をご参照ください。
