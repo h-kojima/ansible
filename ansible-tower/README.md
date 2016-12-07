@@ -22,7 +22,7 @@
 # Ansible Tower
 
 ## Ansible Towerの概要
-Ansible TowerはオープンソースのAnsibleによる各種自動処理を管理するための企業向けソフトウェアです。権限管理、ジョブスケジューラ、ジョブの実行記録といった機能を備えています。Ansible Towerは主に次のような状況で威力を発揮します。  
+Ansible Towerは[Ansible](http://docs.ansible.com/ansible/index.html)による各種自動処理を、管理・追跡するための企業向けソフトウェアです。権限管理、ジョブスケジューラ、ジョブの実行記録といった機能を備えています。Ansible Towerは主に次のような状況で威力を発揮します。  
   
 ・Ansibleによる自動化は導入したものの、Playbook/Inventoryファイルが乱立しているため、管理コストが増えている。  
 どの部署が何のPlaybook/Inventoryを管理しているかを、改めて整理して可視化したい。  
