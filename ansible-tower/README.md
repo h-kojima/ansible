@@ -36,7 +36,7 @@ Ansible Towerの基盤にはAnsibleを利用していますが、Ansibleの代�
 は可能な限りAnsibleだけで実行する方がいいでしょう。  
   
 なお、現状のAnsible Towerでは名前空間を考慮していないので、マルチテナントには対応していません。  
-例えば、各部署毎に重複する名前のリソース(Inventoryなど)をAnsible Towerで作成する  
+例えば、部署毎に重複する名前のリソース(Inventoryなど)をAnsible Towerで作成する  
 といったことはできませんので、ご注意ください。
 
 ## Ansible Tower関連用語
