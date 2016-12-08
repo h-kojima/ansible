@@ -33,7 +33,11 @@ Ansible Towerは[Ansible](http://docs.ansible.com/ansible/index.html)による�
   
 Ansible Towerの基盤にはAnsibleを利用していますが、Ansibleの代替品ではありませんので、  
 現段階では、汎用性を考えてAnsibleだけでできること([条件分岐](http://docs.ansible.com/ansible/playbooks_conditionals.html)や[GitHubのサービスフックの利用](http://docs.ansible.com/ansible/github_hooks_module.html)など)  
-は可能な限りAnsibleだけで実行する方がいいでしょう。
+は可能な限りAnsibleだけで実行する方がいいでしょう。  
+  
+なお、現状のAnsible Towerでは名前空間を考慮していないので、マルチテナントには対応していません。  
+例えば、各部署毎に重複する名前のリソース(Inventoryなど)をAnsible Towerで作成する  
+といったことはできませんので、ご注意ください。
 
 ## Ansible Tower関連用語
 
