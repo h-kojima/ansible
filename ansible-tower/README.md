@@ -13,6 +13,7 @@
     - [Inventoryのインポート/Dynamic Inventory](#inventory%E3%81%AE%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88dynamic-inventory)
     - [Jobの並列度の設定](#job%E3%81%AE%E4%B8%A6%E5%88%97%E5%BA%A6%E3%81%AE%E8%A8%AD%E5%AE%9A)
     - [Scan Job](#scan-job)
+    - [Notification](#notification)
   - [Official Documents](#official-documents)
   - [Revision History](#revision-history)
 
@@ -247,6 +248,130 @@ Scan Jobを実行して、GUIの「Inventory」からホストを選択して、
     
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/scanjob-04.png" width="100%" height="100%">
 
+### Notification
+
+Ansible Towerでは、Project(Playbook)の更新/Jobの実行に関するNotification(通知)を設定できます。簡単にテストしてみたい時は、Ansible TowerにPostfixをインストールして、メール通知のテストをすることができます。
+
+```
+  # yum -y install postfix
+  # systemctl start postfix; systemctl enable postfix
+```
+
+メール通知の設定画面例は以下のようになります。tower-cliでも設定できますが、通知設定の数があまり多くないときは直感的に操作できるGUIの方がいいでしょう。設定が完了したら、鐘アイコンをクリックしてテストを実施できます。
+
+通知をJob Templateに紐付けている場合、Job成功時と失敗時のメッセージは以下のようになります。  
+  
+・Job成功時
+```
+From noreply@noreply.com  Sun Dec 11 15:13:00 2016
+Return-Path: <noreply@noreply.com>
+X-Original-To: root@localhost
+Delivered-To: root@localhost.localdomain
+Content-Type: text/plain; charset="utf-8"
+Subject: Job #14 'job-scan-01' succeeded on Ansible Tower:
+ https://ansible-tower.example.com/#/jobs/14
+From: noreply@noreply.com
+To: root@localhost.localdomain
+Date: Sun, 11 Dec 2016 06:13:00 -0000
+Status: RO
+
+Job #14 had status successful on Ansible Tower, view details at https://ansible-
+tower.example.com/#/jobs/14
+
+{
+    "status": "successful", 
+    "credential": "Cred01", 
+    "name": "job-scan-01", 
+    "started": "2016-12-11T06:12:47.686686+00:00", 
+    "extra_vars": "{}", 
+    "traceback": "", 
+    "friendly_name": "Job", 
+    "created_by": "admin", 
+    "project": null, 
+    "url": "https://ansible-tower.example.com/#/jobs/14", 
+    "finished": "2016-12-11T06:13:00.413048+00:00", 
+    "hosts": {
+        "test2.example.com": {
+            "skipped": 1, 
+            "ok": 3, 
+            "changed": 0, 
+            "dark": 0, 
+            "failed": false, 
+            "processed": 1, 
+            "failures": 0
+        }, 
+        "test1.example.com": {
+            "skipped": 1, 
+            "ok": 3, 
+            "changed": 0, 
+            "dark": 0, 
+            "failed": false, 
+            "processed": 1, 
+            "failures": 0
+        }
+    }, 
+    "playbook": "Default", 
+    "limit": "", 
+    "id": 14, 
+    "inventory": "Inv01"
+}
+```
+・Job失敗時
+```
+From noreply@noreply.com  Sun Dec 11 15:09:45 2016
+Return-Path: <noreply@noreply.com>
+X-Original-To: root@localhost
+Delivered-To: root@localhost.localdomain
+Content-Type: text/plain; charset="utf-8"
+Subject: Job #13 'job-user-create01' failed on Ansible Tower:
+ https://ansible-tower.example.com/#/jobs/13
+From: noreply@noreply.com
+To: root@localhost.localdomain
+Date: Sun, 11 Dec 2016 06:09:45 -0000
+Status: RO
+
+Job #13 had status failed on Ansible Tower, view details at https://ansible-towe
+r.example.com/#/jobs/13
+
+{
+    "status": "failed", 
+    "credential": "Cred01", 
+    "name": "job-user-create01", 
+    "started": "2016-12-11T06:09:33.805764+00:00", 
+    "extra_vars": "{}", 
+    "traceback": "", 
+    "friendly_name": "Job", 
+    "created_by": "admin", 
+    "project": "Project01", 
+    "url": "https://ansible-tower.example.com/#/jobs/13", 
+    "finished": "2016-12-11T06:09:45.293444+00:00", 
+    "hosts": {
+        "test2.example.com": {
+            "skipped": 0, 
+            "ok": 0, 
+            "changed": 0, 
+            "dark": 1, 
+            "failed": true, 
+            "processed": 1, 
+            "failures": 0
+        }, 
+        "test1.example.com": {
+            "skipped": 0, 
+            "ok": 2, 
+            "changed": 0, 
+            "dark": 0, 
+            "failed": false, 
+            "processed": 1, 
+            "failures": 0
+        }
+    }, 
+    "playbook": "user-create.yaml", 
+    "limit": "", 
+    "id": 13, 
+    "inventory": "Inv01"
+}
+```
+通知にはメールの他にも、Slack/Twilio/PagerDuty/HipChat/Webhook/IRCを利用できます。設定方法の詳細は[こちら](http://docs.ansible.com/ansible-tower/latest/html/userguide/notifications.html)をご参照ください。
 ## Official Documents
 
 英語の公式ドキュメントが[こちら](http://docs.ansible.com/ansible-tower/index.html)になります。日本語化はされていません。
