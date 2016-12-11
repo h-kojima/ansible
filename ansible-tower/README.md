@@ -66,24 +66,24 @@ Step1. 最新版のRHEL7またはCentOS7サーバを1台(物理でも仮想で�
 RHEL7の場合は、Baseチャネルの他にもExtraチャネルの利用が必要です。
 
 ```
-  ### RHEL7サーバを利用する時のみ実行 ###
-  # subscription-manager register
-  # subscription-manager repos --disable="*"
-  # subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms
+### RHEL7サーバを利用する時のみ実行 ###
+# subscription-manager register
+# subscription-manager repos --disable="*"
+# subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms
 ```
 
 Step2. [こちら](https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-bundle-latest.el7.tar.gz)からAnsible Towerインストール用のソフトウェアをダウンロードし、inventoryファイルでパスワードを設定した後に、インストールスクリプトを実行します。
 ```
-  # tar xf ansible-tower-setup-bundle-latest.el7.tar.gz
-  # sed -ie "s/admin_password=''/admin_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
-  # sed -ie "s/redis_password=''/redis_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
-  # sed -ie "s/pg_password=''/pg_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
-  # ./ansible-tower-setup-bundle-$VERSION.el7/setup.sh
+# tar xf ansible-tower-setup-bundle-latest.el7.tar.gz
+# sed -ie "s/admin_password=''/admin_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
+# sed -ie "s/redis_password=''/redis_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
+# sed -ie "s/pg_password=''/pg_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
+# ./ansible-tower-setup-bundle-$VERSION.el7/setup.sh
 ```
 Step3. Ansible Towerのadminユーザのパスワードを設定して、`http://ANSIBLE_TOWER_FQDN`にWebブラウザでアクセスし、adminユーザでログインします。
 
 ```
-  # tower-manage changepassword admin
+# tower-manage changepassword admin
 ```
 
 Step4. ライセンス入力画面が表示されますので、ライセンス(評価版を利用する場合は[こちら](https://www.ansible.com/license)から入手可能)を入力すると、Ansible Towerのダッシュボードが表示されます。
@@ -99,23 +99,23 @@ Ansible TowerはGUIで色々な設定ができますが、管理作業の効率�
 Step1. tower-cliインストールに必要なEPELリポジトリを有効にして、tower-cliをインストールします。
 
 ```
-  # yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-  # yum -y install python-pip
-  # pip install ansible-tower-cli
-  # tower-cli --version
+# yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+# yum -y install python-pip
+# pip install ansible-tower-cli
+# tower-cli --version
 ```
 Step2. Ansible Towerサーバ接続に必要な情報を設定します。この設定ファイルは、`~/.tower_cli.cfg`に保存されます。
 
 ```
-  # tower-cli config host $ANSIBLE_TOWER_FQDN
-  # tower-cli config username admin
-  # tower-cli config password $PASSWORD
-  # tower-cli user list
-  == ======== ================= ========== ========= ============ ================= 
-  id username       email       first_name last_name is_superuser is_system_auditor 
-  == ======== ================= ========== ========= ============ ================= 
-   1 admin    admin@example.com                              true             false
-  == ======== ================= ========== ========= ============ ================= 
+# tower-cli config host $ANSIBLE_TOWER_FQDN
+# tower-cli config username admin
+# tower-cli config password $PASSWORD
+# tower-cli user list
+== ======== ================= ========== ========= ============ ================= 
+id username       email       first_name last_name is_superuser is_system_auditor 
+== ======== ================= ========== ========= ============ ================= 
+ 1 admin    admin@example.com                              true             false
+== ======== ================= ========== ========= ============ ================= 
 ```
 
 ### Playbookの実行例
@@ -126,39 +126,39 @@ Step1. 部署/ホスト/認証情報に相当する、Organization/Inventory/Cre
 管理対象のホストにはSSH公開鍵を配布し、ペアになるSSH秘密鍵をCredentialとして登録します。
 
 ```
-  # tower-cli organization create --name Org01
-  # tower-cli inventory create --name Inv01 --organization Org01
-  # tower-cli host create --name $MANAGED_SERVER1 --inventory Inv01
-  # ssh-keygen -f /root/.ssh/id_rsa -N ''
-  # ssh-copy-id root@$MANAGED_SERVER1
-  # tower-cli credential create --name Cred01 --organization Org01 --kind ssh --ssh-key-data /root/.ssh/id_rsa
+# tower-cli organization create --name Org01
+# tower-cli inventory create --name Inv01 --organization Org01
+# tower-cli host create --name $MANAGED_SERVER1 --inventory Inv01
+# ssh-keygen -f /root/.ssh/id_rsa -N ''
+# ssh-copy-id root@$MANAGED_SERVER1
+# tower-cli credential create --name Cred01 --organization Org01 --kind ssh --ssh-key-data /root/.ssh/id_rsa
 ```
 
 Step2. PlaybookとProjectを作成します。
 
 ```
-  # mkdir -p /var/lib/awx/projects/sample-project01
-  # cat << EOF  > /var/lib/awx/projects/sample-project01/user-create.yaml
-  ---
-  - hosts: all
-    tasks:
-      - name: create user
-        user: name=james
-  EOF
-  # tower-cli project create --name Project01 --organization Org01 --scm-type manual --local-path sample-project01
+# mkdir -p /var/lib/awx/projects/sample-project01
+# cat << EOF  > /var/lib/awx/projects/sample-project01/user-create.yaml
+---
+- hosts: all
+  tasks:
+    - name: create user
+      user: name=james
+EOF
+# tower-cli project create --name Project01 --organization Org01 --scm-type manual --local-path sample-project01
 ```
 
 また、Projectとして登録するPlaybookは、GitHubのものも指定できます。  
 
 ```
-  # tower-cli project create --name Project02 --organization Org01 --scm-type git --scm-url https://github.com/ansible/tower-example
+# tower-cli project create --name Project02 --organization Org01 --scm-type git --scm-url https://github.com/ansible/tower-example
 ```
 
 Step3. Job Templateを作成してJobを実行します。Jobの実行をスケジューリングしたい場合は、cronなどを利用します。
 GUIからJobのスケジューリング設定をしたい場合は、[こちら](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#scheduling)をご参照ください。
 ```
-  # tower-cli job_template create --name job-user-create01 --job-type run --inventory Inv01 --project Project01 --playbook user-create.yaml --machine-credential Cred01
-  # tower-cli job launch --job-template job-user-create01
+# tower-cli job_template create --name job-user-create01 --job-type run --inventory Inv01 --project Project01 --playbook user-create.yaml --machine-credential Cred01
+# tower-cli job launch --job-template job-user-create01
 ```
 JobはWebブラウザから実行することもできます。  
 その場合は、Job Templateの横にあるロケットアイコンをクリックします。  
@@ -167,12 +167,12 @@ JobはWebブラウザから実行することもできます。
 Webブラウザからダウンロードすることもできます。
 
 ```
-  # tower-cli job list
-  == ============ ======================== ========== ======= 
-  id job_template         created            status   elapsed 
-  == ============ ======================== ========== ======= 
-   3            7 2016-12-06T10:30:48.357Z successful   10.03
-  == ============ ======================== ========== ======= 
+# tower-cli job list
+== ============ ======================== ========== ======= 
+id job_template         created            status   elapsed 
+== ============ ======================== ========== ======= 
+ 3            7 2016-12-06T10:30:48.357Z successful   10.03
+== ============ ======================== ========== ======= 
 ```
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/job.png" width="100%" height="100%">
 
@@ -183,8 +183,8 @@ Webブラウザからダウンロードすることもできます。
 この場合は、上記手順で作成した「Org01」をサーバ管理者に割り当てます。
 
 ```
-  # tower-cli user create --username $USER01 --password $PASSWORD --email $USER01_MAIL_ADDRESS
-  # tower-cli organization associate_admin --user $USER01 --organization Org01
+# tower-cli user create --username $USER01 --password $PASSWORD --email $USER01_MAIL_ADDRESS
+# tower-cli organization associate_admin --user $USER01 --organization Org01
 ```
 
 これにより、「$USER01」ユーザでAnsible Towerにログインすると、「Org01」に関する情報のみが表示されていて、  
@@ -195,8 +195,8 @@ Webブラウザからダウンロードすることもできます。
 また、システム監査用のユーザ(view権限のみを持つユーザ)も作成できます。
 
 ```
-  # tower-cli user create --username $AUDITOR_USER --password $PASSWORD --email $AUDITOR_USER_MAIL_ADDRESS
-  # tower-cli user modify --username $AUDITOR_USER --is-system-auditor true
+# tower-cli user create --username $AUDITOR_USER --password $PASSWORD --email $AUDITOR_USER_MAIL_ADDRESS
+# tower-cli user modify --username $AUDITOR_USER --is-system-auditor true
 ```
   
 このユーザは、Ansible Towerで持っている全リソース情報(Organization/Project/Jobなど)を確認できます。  
@@ -212,7 +212,7 @@ Webブラウザからダウンロードすることもできます。
 ・Inventoryのインポート
 
 ```
-  # tower-manage inventory_import --inventory-name=Inv02 --source=$INVENTORY_FILE_OR_DIRECTORY
+# tower-manage inventory_import --inventory-name=Inv02 --source=$INVENTORY_FILE_OR_DIRECTORY
 ```  
 ・Dynamic Inventory (AWSの例)
 
@@ -220,9 +220,9 @@ Ansible Towerの既存のInventoryに「ec2-Group01」という名前のグル�
 AWS上で管理しているホスト情報の同期を取るようにします。
 
 ```
-  # tower-cli credential create --name ec2-Cred01 --kind aws --username $AWS_ACCESS_KEY --password $AWS_SECRET_KEY
-  # tower-cli group create --name ec2-Group01 --source ec2 --credential ec2-Cred01 --inventory $INVENTORY_NAME --update-on-launch true --overwrite true 
-  # tower-cli group sync ec2-Group01
+# tower-cli credential create --name ec2-Cred01 --kind aws --username $AWS_ACCESS_KEY --password $AWS_SECRET_KEY
+# tower-cli group create --name ec2-Group01 --source ec2 --credential ec2-Cred01 --inventory $INVENTORY_NAME --update-on-launch true --overwrite true 
+# tower-cli group sync ec2-Group01
 ```
 
 ### Jobの並列度の設定
@@ -253,15 +253,15 @@ Scan Jobを実行して、GUIの「Inventory」からホストを選択して、
 Ansible Towerでは、Project(Playbook)の更新/Jobの実行に関するNotification(通知)を設定できます。簡単にテストしてみたい時は、Ansible TowerにPostfixをインストールして、メール通知のテストをすることができます。
 
 ```
-  # yum -y install postfix
-  # systemctl start postfix; systemctl enable postfix
+# yum -y install postfix
+# systemctl start postfix; systemctl enable postfix
 ```
 
 メール通知の設定画面例は以下のようになります。tower-cliでも設定できますが、通知設定の数があまり多くないときは直感的に操作できるGUIの方がいいでしょう。設定が完了したら、鐘アイコンをクリックしてテストを実施できます。
 
 通知をJob Templateに紐付けている場合、Job成功時と失敗時のメッセージは以下のようになります。  
   
-・Job成功時
+・Job成功時のメッセージ
 ```
 From noreply@noreply.com  Sun Dec 11 15:13:00 2016
 Return-Path: <noreply@noreply.com>
@@ -316,7 +316,7 @@ tower.example.com/#/jobs/14
     "inventory": "Inv01"
 }
 ```
-・Job失敗時
+・Job失敗時のメッセージ
 ```
 From noreply@noreply.com  Sun Dec 11 15:09:45 2016
 Return-Path: <noreply@noreply.com>
