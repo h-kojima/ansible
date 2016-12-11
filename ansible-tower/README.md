@@ -259,9 +259,15 @@ Ansible Towerでは、Project(Playbook)の更新/Jobの実行に関するNotific
 
 メール通知の設定画面例は以下のようになります。tower-cliでも設定できますが、通知設定の数があまり多くないときは直感的に操作できるGUIの方がいいでしょう。設定が完了したら、鐘アイコンをクリックしてテストを実施できます。
 
-通知をJob Templateに紐付けている場合、Job成功時と失敗時のメッセージは以下のようになります。  
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/notification01.png" width="100%" height="100%">
+
+設定した通知をJob Templateに紐付けると、Job成功時と失敗時に通知が行われることを確認できます。  
   
-・Job成功時のメッセージ
+・Job Templateで、Job成功/失敗時の通知をONにする
+
+<img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/notification02.png" width="100%" height="100%">
+
+・Job成功時に自動送信されるメッセージ
 ```
 From noreply@noreply.com  Sun Dec 11 15:13:00 2016
 Return-Path: <noreply@noreply.com>
@@ -316,7 +322,7 @@ tower.example.com/#/jobs/14
     "inventory": "Inv01"
 }
 ```
-・Job失敗時のメッセージ
+・Job失敗時に自動送信されるメッセージ
 ```
 From noreply@noreply.com  Sun Dec 11 15:09:45 2016
 Return-Path: <noreply@noreply.com>
