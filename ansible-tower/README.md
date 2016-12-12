@@ -148,8 +148,7 @@ EOF
 # tower-cli project create --name Project01 --organization Org01 --scm-type manual --local-path sample-project01
 ```
 
-また、Projectとして登録するPlaybookは、GitHubのものも指定できます。  
-
+また、Projectとして登録するPlaybookは、GitHubのものも指定できます。  指定したPlaybookは、Project作成時にAnsible Towerの`/var/lib/awx/projects`以下に保存されます。
 ```
 # tower-cli project create --name Project02 --organization Org01 --scm-type git --scm-url https://github.com/ansible/tower-example
 ```
