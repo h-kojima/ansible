@@ -147,8 +147,14 @@ Step2. PlaybookとProjectを作成します。
 EOF
 # tower-cli project create --name Project01 --organization Org01 --scm-type manual --local-path sample-project01
 ```
+Playbookは、Ansible Towerの`/var/lib/awx/projects/`以下に保存する必要があります。この保存先のディレクトリは、`/etc/tower/setting.py`で変更できます。変更後は、Ansible Towerのサービスを再起動します。
 
-また、Projectとして登録するPlaybookは、GitHubのものも指定できます。  指定したPlaybookは、Project作成時にAnsible Towerの`/var/lib/awx/projects`以下に保存されます。
+```
+# sed -ie 
+# ansible-tower-service restart
+```
+
+また、Projectとして登録するPlaybookは、GitHubのものも指定できます。  
 ```
 # tower-cli project create --name Project02 --organization Org01 --scm-type git --scm-url https://github.com/ansible/tower-example
 ```
@@ -249,7 +255,7 @@ Scan Jobを実行して、GUIの「Inventory」からホストを選択して、
 
 ### Notification
 
-Ansible Towerでは、Project(Playbook)の更新/Jobの実行に関するNotification(通知)を設定できます。簡単にテストしてみたい時は、Ansible TowerにPostfixをインストールして、メール通知のテストをすることができます。
+Ansible Towerでは、Projectの更新(Gitなどを参照して、Ansible Towerの`/var/lib/awx/projects/`に保存されているPlaybookを更新する)/Jobの実行に関するNotification(通知)を設定できます。簡単にテストしてみたい時は、Ansible TowerにPostfixをインストールして、メール通知のテストをすることができます。
 
 ```
 # yum -y install postfix
