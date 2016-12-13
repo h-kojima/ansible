@@ -154,7 +154,7 @@ Playbookは、Ansible Towerの`/var/lib/awx/projects/`以下に保存する必�
 # ansible-tower-service restart
 ```
 
-また、Projectとして登録するPlaybookは、GitHubのものも指定できます。指定したGitHubからPlaybookをダウンロード(これをAnsible TowerではProjectのUpdateと定義しています)することで、Playbookを実行できるようになります。なお、Job実行時に自動でProjectをUpdateすることもできます。こうしたUpdateに関するオプションは、[こちら](http://docs.ansible.com/ansible-tower/latest/html/userguide/projects.html#manage-playbooks-using-source-control)をご参照ください。
+また、Projectとして登録するPlaybookは、GitHubのものも指定できます。指定したGitHubからPlaybookをダウンロード(これをAnsible TowerではProjectのUpdateと定義しています)することで、Playbookを実行できるようになります。なお、Job実行時に自動でProjectをUpdateすることもできます。こうしたUpdateに関するオプションは[こちら](http://docs.ansible.com/ansible-tower/latest/html/userguide/projects.html#manage-playbooks-using-source-control)をご参照ください。
 ```
 # tower-cli project create --name Project02 --organization Org01 \
     --scm-type git --scm-url https://github.com/ansible/tower-example --scm-update-on-launch true
