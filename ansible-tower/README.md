@@ -92,7 +92,7 @@ Step4. ライセンス入力画面が表示されますので、ライセンス(
 
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
-Ansible TowerはGUIで色々な設定ができますが、管理作業の効率化を考えて基本的にはCLI(tower-cli)の利用を推奨します。
+Ansible TowerはGUIで色々な設定ができますが、管理作業の効率化を考えて基本的にはCLI([`tower-cli`](https://github.com/ansible/tower-cli))の利用を推奨します。
 
 ### Ansible Tower CLIのセットアップ
 
@@ -147,7 +147,7 @@ Step2. PlaybookとProjectを作成します。
 EOF
 # tower-cli project create --name Project01 --organization Org01 --scm-type manual --local-path sample-project01
 ```
-Playbookは、Ansible Towerの`/var/lib/awx/projects/`以下に保存する必要があります。この保存先のディレクトリは、`/etc/tower/setting.py`で変更できます。変更後は、Ansible Towerのサービスを再起動します。
+Playbookは、Ansible Towerの`/var/lib/awx/projects/`以下に保存する必要があります。この保存先のディレクトリは、`/etc/tower/setting.py`で変更できます。変更後は、`ansible-tower-service`コマンドでAnsible Towerのサービスを再起動します。
 
 ```
 # sed -ie "s/PROJECTS_ROOT\ =\ '\/var\/lib\/awx\/projects'/PROJECTS_ROOT\ =\ '\/var\/lib\/awx\/new-projects'/g" /etc/tower/settings.py
@@ -217,6 +217,8 @@ id job_template         created            status   elapsed
 既存のInventoryファイルのインポートやAnsibleの[Dynamic Inventory](http://docs.ansible.com/ansible/intro_dynamic_inventory.html)が利用できますので、Inventoryへのホスト情報の登録コストの削減ができます。 
   
 ・Inventoryのインポート
+
+`tower-cli`ではなく、Ansible Tower付属の`tower-manage`コマンドを利用します。
 
 ```
 # tower-manage inventory_import --inventory-name=Inv02 --source=$INVENTORY_FILE_OR_DIRECTORY
