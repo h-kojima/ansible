@@ -114,6 +114,8 @@ Setup log saved to /var/log/tower/setup-2017-05-29-15:55:59.log
 
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard-ja.png" width="100%" height="100%">
 
+Ansible Towerのアップグレードの詳細は[こちら](http://docs.ansible.com/ansible-tower/latest/html/upgrade-migration-guide/upgrade_considerations.html)をご参照ください。
+
 また、CLI([`tower-cli`](https://github.com/ansible/tower-cli))を利用している場合は、tower-cliのアップグレードも実施しておきます。
 
 ```
