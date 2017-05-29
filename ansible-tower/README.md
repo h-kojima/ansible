@@ -110,7 +110,7 @@ The setup process completed successfully.
 Setup log saved to /var/log/tower/setup-2017-05-29-15:55:59.log
 # reboot
 ```
-再起動が完了して再ログインできることを確認します。Ansible Tower ver. 3.1.0 から[日本語対応](http://docs.ansible.com/ansible-tower/latest/html/upgrade-migration-guide/release_notes.html#ansible-tower-version-3-1-0)が追加されたので、ブラウザの言語設定を日本語にするとWeb UIが日本語化されていることを確認できます。
+再起動が完了して再ログインできることを確認します。Ansible Tower ver. 3.1.0 から[日本語対応](http://docs.ansible.com/ansible-tower/latest/html/upgrade-migration-guide/release_notes.html#ansible-tower-version-3-1-0)が追加されたので、Webブラウザの言語設定を日本語にするとWeb UIが日本語化されていることを確認できます。
 
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard-ja.png" width="100%" height="100%">
 
