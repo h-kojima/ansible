@@ -91,6 +91,10 @@ Step4. ライセンス入力画面が表示されますので、ライセンス(
 
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard.png" width="100%" height="100%">
 
+## Ansible Towerのアップグレード (ver. 3.0.3 -> 3.1.3)
+
+Step1. [こちら](http://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz)からAnsible Towerの
+
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
 Ansible TowerはGUIで色々な設定ができますが、管理作業の効率化を考えて基本的にはCLI([`tower-cli`](https://github.com/ansible/tower-cli))の利用を推奨します。
