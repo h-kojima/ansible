@@ -6,6 +6,7 @@
   - [Ansible Towerの概要](#ansible-tower%E3%81%AE%E6%A6%82%E8%A6%81)
   - [Ansible Tower関連用語](#ansible-tower%E9%96%A2%E9%80%A3%E7%94%A8%E8%AA%9E)
   - [Ansible Towerのインストール (ver. 3.0.3の情報)](#ansible-tower%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-ver-303%E3%81%AE%E6%83%85%E5%A0%B1)
+  - [Ansible Towerのアップグレード (ver. 3.0.3 -> 3.1.3)](#ansible-tower%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89-ver-303---313)
   - [Ansible Towerの使い方 (ver. 3.0.3の情報)](#ansible-tower%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9-ver-303%E3%81%AE%E6%83%85%E5%A0%B1)
     - [Ansible Tower CLIのセットアップ](#ansible-tower-cli%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
     - [Playbookの実行例](#playbook%E3%81%AE%E5%AE%9F%E8%A1%8C%E4%BE%8B)
@@ -113,7 +114,7 @@ Setup log saved to /var/log/tower/setup-2017-05-29-15:55:59.log
 
 <img src="https://github.com/h-kojima/ansible/blob/master/ansible-tower/images/dashboard-ja.png" width="100%" height="100%">
 
-また、CLI(tower-cli)を利用している場合は、tower-cliのアップグレードも実施しておきます。
+また、CLI([`tower-cli`](https://github.com/ansible/tower-cli))を利用している場合は、tower-cliのアップグレードも実施しておきます。
 
 ```
 # pip install --upgrade pip
