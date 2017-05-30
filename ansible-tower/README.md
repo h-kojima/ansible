@@ -94,7 +94,7 @@ Step4. ライセンス入力画面が表示されますので、ライセンス(
 
 ## Ansible Towerのアップグレード (ver. 3.0.3 -> 3.1.3)
 
-[こちら](http://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz)からインストール/アップグレード用ソフトウェアをダウンロードし、インストール時と同様にinventoryファイルでパスワードを設定した後に、インストール/アップグレード用スクリプトを実行します。なお、このスクリプトでは既にansibleパッケージがインストールされている場合、ansibleパッケージのインストール/アップデートをSkipしますので、適宜ansibleパッケージをアップデートしておきます。実行後は再起動してアップグレードを反映します。
+[こちら](http://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz)からインストール/アップグレード用ソフトウェアをダウンロードし、インストール時と同様にinventoryファイルでパスワードを設定した後に、インストール/アップグレード用スクリプトを実行します。なお、このスクリプトでは既にansibleパッケージがインストールされている場合、ansibleパッケージのインストール/アップデートをSkipしますので、ansibleパッケージを適宜アップデートしておきます。実行後は再起動してアップグレードを反映します。
 
 ```
 # tar xf ansible-tower-setup-latest.tar.gz
