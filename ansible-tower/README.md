@@ -94,7 +94,7 @@ Step4. ライセンス入力画面が表示されますので、ライセンス(
 
 ## Ansible Towerのアップグレード (ver. 3.0.3 -> 3.1.3)
 
-[こちら](http://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz)からインストール/アップグレード用ソフトウェアをダウンロードし、インストール時と同様にinventoryファイルでパスワードを設定した後に、インストール/アップグレード用スクリプトを実行します。実行後は再起動してアップグレードを反映します。
+[こちら](http://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz)からインストール/アップグレード用ソフトウェアをダウンロードし、インストール時と同様にinventoryファイルでパスワードを設定した後に、インストール/アップグレード用スクリプトを実行します。なお、このスクリプトでは既にansibleパッケージがインストールされている場合、ansibleパッケージのインストール/アップデートをSkipしますので、適宜ansibleパッケージをアップデートしておきます。実行後は再起動してアップグレードを反映します。
 
 ```
 # tar xf ansible-tower-setup-latest.tar.gz
@@ -108,6 +108,7 @@ localhost                  : ok=120  changed=36   unreachable=0    failed=0
 
 The setup process completed successfully.
 Setup log saved to /var/log/tower/setup-2017-05-29-15:55:59.log
+# yum -y update ansible
 # reboot
 ```
 再起動後に再ログインできることを確認します。Ansible Tower ver. 3.1.0 から[日本語対応](http://docs.ansible.com/ansible-tower/latest/html/upgrade-migration-guide/release_notes.html#ansible-tower-version-3-1-0)が追加されたので、Webブラウザの言語設定を日本語にするとWeb UIが日本語化されていることを確認できます。
