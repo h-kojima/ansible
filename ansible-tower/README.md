@@ -42,6 +42,8 @@ Ansible Towerの基盤にはAnsibleを利用していますが、Ansibleの代�
 例えば、会社/部署毎に重複する名前のリソース(Inventoryなど)をAnsible Towerで作成する  
 といったことはできませんので、ご注意ください。
 
+Ansible Towerは、Red Hatによりサポートされる有償の製品となります。ライフサイクルは[こちら](https://access.redhat.com/articles/2919301)をご参照ください。
+
 ## Ansible Tower関連用語
 
 ・Inventory  
