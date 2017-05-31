@@ -194,6 +194,21 @@ The setup process completed successfully.
 Setup log saved to /var/log/tower/setup-2017-06-01-06:48:51.log
 ```
 
+```
+# ansible-tower-service stop
+Stopping Tower
+Stopping rabbitmq-server (via systemctl):                  [  OK  ]
+Redirecting to /bin/systemctl stop  nginx.service
+Redirecting to /bin/systemctl stop  supervisord.service
+You have new mail in /var/spool/mail/root
+```
+
+```
+# tower-manage deprovision_node --name=ansible-tower04.example.com
+Removing node 'rabbitmq@ansible-tower04.example.com' from cluster ...
+Successfully deprovisioned ansible-tower04.example.com
+```
+
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
 Ansible TowerはGUIで色々な設定ができますが、管理作業の効率化を考えて基本的にはCLI([`tower-cli`](https://github.com/ansible/tower-cli))の利用を推奨します。
