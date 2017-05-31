@@ -76,13 +76,13 @@ RHEL7の場合は、Baseチャネルの他にもExtraチャネルの利用が必
 # subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms
 ```
 
-Step2. [こちら](https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-bundle-latest.el7.tar.gz)からAnsible Towerインストール用のソフトウェアをダウンロードし、inventoryファイルでパスワードを設定した後に、インストールスクリプトを実行します。
+Step2. [こちら](https://releases.ansible.com/ansible-tower/setup-bundle/ansible-tower-setup-latest.el7.tar.gz)からAnsible Towerインストール用のソフトウェアをダウンロードし、inventoryファイルでパスワードを設定した後に、インストールスクリプトを実行します。
 ```
-# tar xf ansible-tower-setup-bundle-latest.el7.tar.gz
-# sed -ie "s/admin_password=''/admin_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
-# sed -ie "s/redis_password=''/redis_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
-# sed -ie "s/pg_password=''/pg_password='$PASSWORD'/g" ansible-tower-setup-bundle-$VERSION.el7/inventory
-# ./ansible-tower-setup-bundle-$VERSION.el7/setup.sh
+# tar xf ansible-tower-setup-latest.el7.tar.gz
+# sed -ie "s/admin_password=''/admin_password='$PASSWORD'/g" ansible-tower-setup-$VERSION.el7/inventory
+# sed -ie "s/redis_password=''/redis_password='$PASSWORD'/g" ansible-tower-setup-$VERSION.el7/inventory
+# sed -ie "s/pg_password=''/pg_password='$PASSWORD'/g" ansible-tower-setup-$VERSION.el7/inventory
+# ./ansible-tower-setup-$VERSION.el7/setup.sh
 ```
 Step3. Ansible Towerのadminユーザのパスワードを設定して、`http://ANSIBLE_TOWER_FQDN`にWebブラウザでアクセスし、adminユーザでログインします。
 
