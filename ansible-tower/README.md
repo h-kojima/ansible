@@ -129,6 +129,8 @@ Ansible Towerのアップグレードの詳細は[こちら](http://docs.ansible
 
 ## Ansible Towerの冗長化 (ver. 3.1.3の情報)
 
+Ansible Tower ver. 3.1.0 から[スケールアウト型のActive-Activeクラスター構成](http://docs.ansible.com/ansible-tower/latest/html/release-notes/relnotes.html#ansible-tower-version-3-1-0)を組めるようになりました。Ansible Towerのインストールスクリプトで組める典型的なクラスター構成は、Ansible Towerが3ノード(3ノード以上を推奨)、Ansible Towerの環境情報を格納するPostgreSQLが1ノード(複数ノードを指定するとTowerインストール時にエラーが出力されます)といった構成になります。この場合は、下記のようなinventoryファイルを利用してインストールすることになります。
+
 ```
 [tower]
 ansible-tower01.example.com
@@ -158,7 +160,12 @@ rabbitmq_cookie=cookiemonster
 rabbitmq_use_long_name=true
 ```
 
+シングルノードのインストール時と同様に、インストールスクリプトを実行します。この時、ansibleパッケージのインストールと、Ansible Towerインストール対象の各ノードにSSH公開鍵の配布を事前実行する必要があります。
+
 ```
+# yum -y install ansible
+# ssh-keygen -f /root/.ssh/id_rsa -N ''
+# ssh-copy-id root@$ANSIBLE_TOWER_AND_POSTGRESQL_NODES
 # ./ansible-tower-setup-$VERSION/setup.sh
 ... <snip> ...
 PLAY RECAP *****************************************************************
@@ -170,6 +177,8 @@ pgsql01.example.com        : ok=40   changed=15   unreachable=0    failed=0
 The setup process completed successfully.
 Setup log saved to /var/log/tower/setup-2017-05-31-21:10:16.log
 ```
+
+Ansible Towerのノードを後から追加したい場合は、inventoryファイルにノード情報を追加してインストールスクリプトを再実行します。
 
 ```
 # cat ./ansible-tower-setup-$VERSION/inventory
@@ -194,6 +203,8 @@ The setup process completed successfully.
 Setup log saved to /var/log/tower/setup-2017-06-01-06:48:51.log
 ```
 
+Ansible Towerのノードをクラスターから削除したい場合は、削除対象のノード上でAnsible Towerのサービスを停止します。
+
 ```
 # ansible-tower-service stop
 Stopping Tower
@@ -203,11 +214,17 @@ Redirecting to /bin/systemctl stop  supervisord.service
 You have new mail in /var/spool/mail/root
 ```
 
+続いて、Ansible Towerのクラスターに参加しているいずれかのノード上で、クラスターからの削除コマンドを実行します。
+
 ```
 # tower-manage deprovision_node --name=ansible-tower04.example.com
 Removing node 'rabbitmq@ansible-tower04.example.com' from cluster ...
 Successfully deprovisioned ansible-tower04.example.com
 ```
+
+なお、シングルノード構成からマルチノード構成に変更することはできないのでご注意下さい。そのような場合は、Ansible Towerの[バックアップ/リストア](http://docs.ansible.com/ansible-tower/latest/html/administration/backup_restore.html#ag-backup-restore)機能を利用して、新規インストールしたマルチノード構成にバックアップしたデータをリストアすることになります。
+
+また、インストール時に既存のPostgreSQLサーバ(9.4系)を指定することもできます。Ansible Towerのインストールスクリプトでは設定できないPostgreSQLサーバのクラスタリング構成を、予め組んでおくのも良いでしょう。こうしたAnsible Towerのインストール手順の詳細については、[こちら](http://docs.ansible.com/ansible-tower/latest/html/installandreference/tower_install_wizard.html)をご参照ください。
 
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
