@@ -127,6 +127,50 @@ Ansible Towerのアップグレードの詳細は[こちら](http://docs.ansible
 # tower-cli --version
 ```
 
+## Ansible Towerの冗長化 (ver. 3.1.3の情報)
+
+```
+[tower]
+ansible-tower01.example.com
+ansible-tower02.example.com
+ansible-tower03.example.com
+
+[database]
+pgsql01.example.com
+
+[all:vars]
+admin_password='redhat'
+
+pg_host='pgsql01.example.com'
+pg_port='5432'
+
+pg_database='awx'
+pg_username='awx'
+pg_password='redhat'
+
+rabbitmq_port=5672
+rabbitmq_vhost=tower
+rabbitmq_username=tower
+rabbitmq_password='redhat'
+rabbitmq_cookie=cookiemonster
+
+# Needs to be true for fqdns and ip addresses
+rabbitmq_use_long_name=true
+```
+
+```
+# ./ansible-tower-setup-$VERSION/setup.sh
+... <snip> ...
+PLAY RECAP *****************************************************************
+ansible-tower01.example.com : ok=103  changed=47   unreachable=0    failed=0   
+ansible-tower02.example.com : ok=100  changed=46   unreachable=0    failed=0   
+ansible-tower03.example.com : ok=100  changed=46   unreachable=0    failed=0   
+pgsql01.example.com        : ok=40   changed=15   unreachable=0    failed=0 
+
+The setup process completed successfully.
+Setup log saved to /var/log/tower/setup-2017-05-31-21:10:16.log
+```
+
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
 Ansible TowerはGUIで色々な設定ができますが、管理作業の効率化を考えて基本的にはCLI([`tower-cli`](https://github.com/ansible/tower-cli))の利用を推奨します。
