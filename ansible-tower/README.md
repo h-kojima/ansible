@@ -7,6 +7,7 @@
   - [Ansible Tower関連用語](#ansible-tower%E9%96%A2%E9%80%A3%E7%94%A8%E8%AA%9E)
   - [Ansible Towerのインストール (ver. 3.0.3の情報)](#ansible-tower%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-ver-303%E3%81%AE%E6%83%85%E5%A0%B1)
   - [Ansible Towerのアップグレード (ver. 3.0.3 -> 3.1.3)](#ansible-tower%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89-ver-303---313)
+  - [Ansible Towerの冗長化 (ver. 3.1.3の情報)](#ansible-tower%E3%81%AE%E5%86%97%E9%95%B7%E5%8C%96-ver-313%E3%81%AE%E6%83%85%E5%A0%B1)
   - [Ansible Towerの使い方 (ver. 3.0.3の情報)](#ansible-tower%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9-ver-303%E3%81%AE%E6%83%85%E5%A0%B1)
     - [Ansible Tower CLIのセットアップ](#ansible-tower-cli%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
     - [Playbookの実行例](#playbook%E3%81%AE%E5%AE%9F%E8%A1%8C%E4%BE%8B)
