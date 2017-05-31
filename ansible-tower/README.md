@@ -171,6 +171,29 @@ The setup process completed successfully.
 Setup log saved to /var/log/tower/setup-2017-05-31-21:10:16.log
 ```
 
+```
+# cat ./ansible-tower-setup-$VERSION/inventory
+[tower]
+ansible-tower01.example.com
+ansible-tower02.example.com
+ansible-tower03.example.com
+ansible-tower04.example.com
+
+[database]
+... <snip> ...
+# ./ansible-tower-setup-$VERSION/setup.sh
+... <snip> ...
+PLAY RECAP *****************************************************************
+ansible-tower01.example.com : ok=101  changed=13   unreachable=0    failed=0   
+ansible-tower02.example.com : ok=98   changed=13   unreachable=0    failed=0   
+ansible-tower03.example.com : ok=98   changed=13   unreachable=0    failed=0   
+ansible-tower04.example.com : ok=100  changed=45   unreachable=0    failed=0   
+pgsql01.example.com        : ok=37   changed=1    unreachable=0    failed=0   
+
+The setup process completed successfully.
+Setup log saved to /var/log/tower/setup-2017-06-01-06:48:51.log
+```
+
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
 Ansible TowerはGUIで色々な設定ができますが、管理作業の効率化を考えて基本的にはCLI([`tower-cli`](https://github.com/ansible/tower-cli))の利用を推奨します。
