@@ -161,7 +161,7 @@ rabbitmq_cookie=cookiemonster
 rabbitmq_use_long_name=true
 ```
 
-シングルノードのインストール時と同様に、インストールスクリプトを実行します。この時、ansibleパッケージのインストールと、Ansible Towerインストール対象の各ノードにSSH公開鍵の配布を事前実行する必要があります。
+シングルノードのインストール時と同様に、インストールスクリプトを実行します。この時、ansibleパッケージのインストールと、Ansible Towerインストール対象の各ノードにSSH公開鍵の配布を事前実行する必要があります。この時ロードバランサーの設定は行いませんので、既存のロードバランサーとの連携設定を手動で行う必要があります。
 
 ```
 # yum -y install ansible
@@ -223,9 +223,9 @@ Removing node 'rabbitmq@ansible-tower04.example.com' from cluster ...
 Successfully deprovisioned ansible-tower04.example.com
 ```
 
-なお、シングルノード構成からマルチノード構成に変更することはできないのでご注意下さい。そのような場合は、Ansible Towerの[バックアップ/リストア](http://docs.ansible.com/ansible-tower/latest/html/administration/backup_restore.html#ag-backup-restore)機能を利用して、新規インストールしたマルチノード構成にバックアップしたデータをリストアすることになります。
+なお、[アップグレードの過程でシングルノード構成からマルチノード構成に変更することはできません](http://docs.ansible.com/ansible-tower/latest/html/installandreference/upgrade_tower.html)のでご注意下さい。そのような場合は、Ansible Towerの[バックアップ/リストア](http://docs.ansible.com/ansible-tower/latest/html/administration/backup_restore.html#ag-backup-restore)機能を利用して、新規インストールしたマルチノード構成にバックアップしたデータをリストアすることになります。
 
-また、インストール時に既存のPostgreSQLサーバ(9.4系)を指定することもできます。Ansible Towerのインストールスクリプトでは設定できないPostgreSQLサーバのクラスタリング構成を、予め組んでおくのも良いでしょう。
+[インストール手順](http://docs.ansible.com/ansible-tower/latest/html/installandreference/tower_install_wizard.html)や[冗長化設定](https://docs.ansible.com/ansible-tower/latest/html/administration/clustering.html)の詳細も合わせてご確認ください。
 
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
