@@ -225,7 +225,7 @@ Successfully deprovisioned ansible-tower04.example.com
 
 なお、シングルノード構成からマルチノード構成に変更することはできないのでご注意下さい。そのような場合は、Ansible Towerの[バックアップ/リストア](http://docs.ansible.com/ansible-tower/latest/html/administration/backup_restore.html#ag-backup-restore)機能を利用して、新規インストールしたマルチノード構成にバックアップしたデータをリストアすることになります。
 
-また、インストール時に既存のPostgreSQLサーバ(9.4系)を指定することもできます。Ansible Towerのインストールスクリプトでは設定できないPostgreSQLサーバのクラスタリング構成を、予め組んでおくのも良いでしょう。こうしたAnsible Towerのインストール手順の詳細については、[こちら](http://docs.ansible.com/ansible-tower/latest/html/installandreference/tower_install_wizard.html)をご参照ください。
+また、インストール時に既存のPostgreSQLサーバ(9.4系)を指定することもできます。Ansible Towerのインストールスクリプトでは設定できないPostgreSQLサーバのクラスタリング構成を、予め組んでおくのも良いでしょう。
 
 ## Ansible Towerの使い方 (ver. 3.0.3の情報)
 
