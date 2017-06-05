@@ -130,7 +130,7 @@ Ansible Towerのアップグレードの詳細は[こちら](http://docs.ansible
 
 ## Ansible Towerの冗長化 (ver. 3.1.3の情報)
 
-Ansible Tower ver. 3.1.0 から[スケールアウト型のActive-Activeクラスター構成](http://docs.ansible.com/ansible-tower/latest/html/release-notes/relnotes.html#ansible-tower-version-3-1-0)を組めるようになりました。Ansible Towerのインストールスクリプトで組める典型的なクラスター構成は、Ansible Towerが3ノード(3ノード以上を推奨)、Ansible Towerの環境情報を格納するPostgreSQLが1ノード(複数ノードを指定するとTowerインストール時にエラーが出力されます)といった構成になります。この場合は、下記のようなinventoryファイルを利用してインストールすることになります。
+Ansible Tower ver. 3.1.0 から[スケールアウト型のActive-Activeクラスター構成](http://docs.ansible.com/ansible-tower/latest/html/release-notes/relnotes.html#ansible-tower-version-3-1-0)を組めるようになりました。Ansible Towerのインストールスクリプトで組める典型的なクラスター構成は、Ansible Towerが3ノード(3ノード以上を推奨)、Ansible Towerの環境情報を格納するPostgreSQLが1ノードといった構成になります。この場合は、下記のようなinventoryファイルを利用してインストールすることになります。
 
 ```
 [tower]
@@ -223,7 +223,9 @@ Removing node 'rabbitmq@ansible-tower04.example.com' from cluster ...
 Successfully deprovisioned ansible-tower04.example.com
 ```
 
-なお、[アップグレードの過程でシングルノード構成からマルチノード構成に変更することはできません](http://docs.ansible.com/ansible-tower/latest/html/installandreference/upgrade_tower.html)のでご注意下さい。そのような場合は、Ansible Towerの[バックアップ/リストア](http://docs.ansible.com/ansible-tower/latest/html/administration/backup_restore.html#ag-backup-restore)機能を利用して、新規インストールしたマルチノード構成にバックアップしたデータをリストアすることになります。
+[アップグレードの過程でシングルノード構成からマルチノード構成に変更することはできません](http://docs.ansible.com/ansible-tower/latest/html/installandreference/upgrade_tower.html)のでご注意下さい。この場合は、Ansible Towerの[バックアップ/リストア](http://docs.ansible.com/ansible-tower/latest/html/administration/backup_restore.html#ag-backup-restore)機能を利用して、新規インストールしたマルチノード構成にバックアップしたデータをリストアすることになります。
+
+ちなみに、Ansible Towerインストール時に利用するInventoryファイルで複数ノードのPostgreSQLを指定すると、Towerインストール時にエラーが出力されます。この場合は、Ansible Towerとは別に作成しておいた冗長化構成のPostgreSQLノードを利用する必要があります。
 
 [インストール手順](http://docs.ansible.com/ansible-tower/latest/html/installandreference/tower_install_wizard.html)や[冗長化設定](https://docs.ansible.com/ansible-tower/latest/html/administration/clustering.html)の詳細も合わせてご確認ください。
 
