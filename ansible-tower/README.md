@@ -128,9 +128,9 @@ Ansible Towerのアップグレードの詳細は[こちら](http://docs.ansible
 # tower-cli --version
 ```
 
-## Ansible Towerの冗長化 (ver. 3.1.3の情報)
+## Ansible Towerのクラスタリング (ver. 3.1.3の情報)
 
-Ansible Tower ver. 3.1.0 から[スケールアウト型のActive-Activeクラスター構成](http://docs.ansible.com/ansible-tower/latest/html/release-notes/relnotes.html#ansible-tower-version-3-1-0)を組めるようになりました。Ansible Towerのインストールスクリプトで組める典型的なクラスター構成は、Ansible Towerが3ノード(3ノード以上を推奨)、Ansible Towerの環境情報を格納するPostgreSQLが1ノードといった構成になります。この場合は、下記のようなinventoryファイルを利用してインストールすることになります。
+Ansible Tower ver. 3.1.0 から[スケールアウト型のActive-Activeクラスター構成](http://docs.ansible.com/ansible-tower/latest/html/release-notes/relnotes.html#ansible-tower-version-3-1-0)を組めるようになりました。クラスター構成により、[Job実行を分散化](https://docs.ansible.com/ansible-tower/latest/html/administration/clustering.html#job-runtime-behavior)することによる性能向上を狙えます。Ansible Towerのインストールスクリプトで組める典型的なクラスター構成は、Ansible Towerが3ノード(3ノード以上を推奨)、Ansible Towerの環境情報を格納するPostgreSQLが1ノードといった構成になります。この場合は、下記のようなinventoryファイルを利用してインストールすることになります。
 
 ```
 [tower]
@@ -532,5 +532,5 @@ r.example.com/#/jobs/13
 
 ## Revision History
 
-2017-05-31 ライフサイクル/アップグレード/冗長化に関する記述を追加  
+2017-05-31 ライフサイクル/アップグレード/クラスタリングに関する記述を追加  
 2016-12-07 初版リリース
