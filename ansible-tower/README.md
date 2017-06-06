@@ -77,7 +77,7 @@ RHEL7の場合は、Baseチャネルの他にもExtraチャネルの利用が必
 # subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms
 ```
 
-Step2. [こちら](https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.el7.tar.gz)からAnsible Towerインストール用のソフトウェアをダウンロードし、inventoryファイルでパスワードを設定した後に、インストールスクリプトを実行します。
+Step2. [こちら](http://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz)からAnsible Towerインストール用のソフトウェアをダウンロードし、inventoryファイルでパスワードを設定した後に、インストールスクリプトを実行します。
 ```
 # tar xf ansible-tower-setup-latest.el7.tar.gz
 # sed -ie "s/admin_password=''/admin_password='$PASSWORD'/g" ansible-tower-setup-$VERSION.el7/inventory
