@@ -15,7 +15,7 @@
 # AWX
 
 ## AWXの概要
-[AWX](https://github.com/ansible/awx)はAnsible TowerのOSSコミュニティ版ソフトウェアです。Ansible Towerについての概要は[こちら](https://github.com/h-kojima/ansible/tree/master/ansible-tower#ansible-tower%E3%81%AE%E6%A6%82%E8%A6%81)をご参照ください。
+[AWX](https://github.com/ansible/awx)はAnsible TowerのOSSコミュニティ版ソフトウェアです。Ansible Towerについての概要は[こちら](https://github.com/h-kojima/ansible/tree/master/ansible-tower#ansible-tower%E3%81%AE%E6%A6%82%E8%A6%81)をご参照ください。AWXは2週間毎のリリースを予定しており、本番環境での利用は想定しておりません。こうした情報をまとめた[FAQ](https://www.ansible.com/awx-project-faq)がありますので、ご参照ください。
 
 ## AWXのインストール
 Step1. 最新版のRHEL7またはCentOS7サーバを1台(物理でも仮想でも可)用意します。  
@@ -28,7 +28,7 @@ RHEL7の場合は、Baseチャネルの他にもExtraチャネルの利用が必
 # subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms
 ```
 
-[Ansible Engine](https://www.ansible.com/ansible-engine)(Red Hatサポート付きのAnsible。有償製品。)を利用する場合は、RHELのExtraチャネルではなくAnsible Engineの専用チャネルを有効化します。
+[Ansible Engine](https://www.ansible.com/ansible-engine)(Red Hat有償サポート付きのAnsible)を利用する場合は、RHELのExtraチャネルではなくAnsible Engineの専用チャネルを有効化します。
 
 ```
 ### RHEL7でAnsible Engineを利用する時のみ実行 ###
@@ -54,7 +54,7 @@ Step3. AWXのGitリポジトリをクローンして、インストールする�
 # ansible-playbook -i inventory install.yml
 ```
 
-Playbookの実行が完了すると、AWX関連のDockerイメージとコンテナの状態を確認できるようになります。
+Playbookの実行が完了すると、AWX関連のDockerイメージとコンテナの状態を確認できるようになります。各コンテナのログを参照する場合は、`docker logs`コマンドを実行します。
 
 ```
 # docker images
@@ -71,6 +71,7 @@ b5fab20eb4f8        ansible/awx_web:latest    "/tini -- /bin/sh -c "   25 hours 
 79e86d4d12ff        memcached:alpine          "docker-entrypoint.sh"   25 hours ago        Up 47 minutes       11211/tcp                            memcached
 91561b53f030        rabbitmq:3                "docker-entrypoint.sh"   25 hours ago        Up 47 minutes       4369/tcp, 5671-5672/tcp, 25672/tcp   rabbitmq
 cb8d1ac80197        postgres:9.6              "docker-entrypoint.sh"   25 hours ago        Up 47 minutes       5432/tcp                             postgres
+# docker logs -f awx_task
 ```
 
 これらのコンテナは[restart_policyが設定](https://github.com/ansible/awx/pull/228/commits/4236654b0c6e10873dd1ab6c07cff6c7fc4942a6)されているため、管理者が意図的に停止しない限り、AWX関連のコンテナが自動起動されるようになっています。
@@ -96,11 +97,7 @@ v1とv2がありますが、現時点での両者の違いは"credential_types"�
 
 
 ## AWXの使い方
-AWXの使い方は[Ansible Towerのガイド](http://docs.ansible.com/ansible-tower/latest/html/userguide/index.html)をご参照ください。各コンテナのログを参照する場合は、`docker logs`コマンドを実行します。
-
-```
-# docker logs -f aws_task
-```
+AWXの使い方は[Ansible Towerのユーザガイド](http://docs.ansible.com/ansible-tower/latest/html/userguide/index.html)をご参照ください。
 
 ## Revision History
 2017-10-03 初版リリース
