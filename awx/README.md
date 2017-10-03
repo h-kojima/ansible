@@ -80,7 +80,7 @@ Step4. http://HOSTNAME_OF_AWX/ にアクセスするとログイン画面が表�
 
 <img src="https://github.com/h-kojima/ansible/blob/master/awx/images/awx-dashboard.png" width="100%" height="100%">
 
-なお、インストール時に管理者用のアカウント名やパスワードを指定したい場合は、inventoryファイルを編集します。
+なお、インストール時に管理者用のアカウント名やパスワードを指定したい場合は、インストール用Playbookの実行前にinventoryファイルを編集しておく必要があります。
 
 ```
 # cd awx/installer
