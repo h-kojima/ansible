@@ -76,7 +76,7 @@ cb8d1ac80197        postgres:9.6              "docker-entrypoint.sh"   25 hours 
 
 これらのコンテナは[restart_policyが設定](https://github.com/ansible/awx/pull/228/commits/4236654b0c6e10873dd1ab6c07cff6c7fc4942a6)されているため、管理者が意図的に停止しない限り、AWX関連のコンテナが自動起動されるようになっています。
 
-Step4. http://HOSTNAME_OF_AWX にアクセスするとログイン画面が表示されます。80番のポートを使いますので、アクセス出来ない場合は80番のポートが開放されているか確認してください。デフォルトでは管理者用のアカウントが用意されており、admin/password でログインできます。
+Step4. http://HOSTNAME_OF_AWX/ にアクセスするとログイン画面が表示されます。80番のポートを使いますので、アクセス出来ない場合は80番のポートが開放されているか確認してください。デフォルトでは管理者用のアカウントが用意されており、admin/password でログインできます。
 
 <img src="https://github.com/h-kojima/ansible/blob/master/awx/images/awx-dashboard.png" width="100%" height="100%">
 
@@ -92,7 +92,7 @@ Step4. http://HOSTNAME_OF_AWX にアクセスするとログイン画面が表�
 AWXの使い方は[Ansible Towerのユーザガイド](http://docs.ansible.com/ansible-tower/latest/html/userguide/index.html)をご参照ください。
 
 ## AWXのAPI
-REST APIを使えます。http://HOSTNAME_OF_AWX/api/{v1,v2}にアクセスすることで、どんなAPIが用意されているか参照できます。
+REST APIを使えます。http://HOSTNAME_OF_AWX/api/{v1,v2}/ にアクセスすることで、どんなAPIが用意されているか参照できます。
 
 <img src="https://github.com/h-kojima/ansible/blob/master/awx/images/awx-api-v2.png" width="100%" height="100%">
 
