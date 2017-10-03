@@ -5,8 +5,8 @@
 - [AWX](#awx)
   - [AWXの概要](#awx%E3%81%AE%E6%A6%82%E8%A6%81)
   - [AWXのインストール](#awx%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
-  - [AWXのAPI](#awx%E3%81%AEapi)
   - [AWXの使い方](#awx%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9)
+  - [AWXのAPI](#awx%E3%81%AEapi)
   - [Revision History](#revision-history)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -88,16 +88,15 @@ Step4. http://HOSTNAME_OF_AWX にアクセスするとログイン画面が表�
 # echo "default_admin_password=ADMIN_USER_PASSWORD" >> inventory
 ```
 
+## AWXの使い方
+AWXの使い方は[Ansible Towerのユーザガイド](http://docs.ansible.com/ansible-tower/latest/html/userguide/index.html)をご参照ください。
+
 ## AWXのAPI
 REST APIを使えます。http://HOSTNAME_OF_AWX/api/{v1,v2}にアクセスすることで、どんなAPIが用意されているか参照できます。
 
 <img src="https://github.com/h-kojima/ansible/blob/master/awx/images/awx-api-v2.png" width="100%" height="100%">
 
 v1とv2がありますが、現時点での両者の違いは"credential_types"を参照できるか否かとなります。v2でしか"credential_types"を参照できないので、ご注意ください。
-
-
-## AWXの使い方
-AWXの使い方は[Ansible Towerのユーザガイド](http://docs.ansible.com/ansible-tower/latest/html/userguide/index.html)をご参照ください。
 
 ## Revision History
 2017-10-03 初版リリース
