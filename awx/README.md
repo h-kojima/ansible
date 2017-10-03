@@ -37,9 +37,10 @@ RHEL7の場合は、Baseチャネルの他にもExtraチャネルの利用が必
 # subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-ansible-2.4-rpms
 ```
 
-Step2. [AWXはDockerで実行することを前提](https://github.com/ansible/awx/blob/devel/INSTALL.md#prerequisites)としています。そのため、AWXのインストールに必要なソフトウェアを予め導入しておきます。
+Step2. [AWXはDockerで実行することを前提](https://github.com/ansible/awx/blob/devel/INSTALL.md#prerequisites)としています。そのため、AWXのインストールに必要なソフトウェアを予め導入しておきます。この時EPELリポジトリも有効化します。
 
 ```
+# yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 # yum -y install git docker ansible python-pip
 # pip install --upgrade pip
 # pip install docker-py
