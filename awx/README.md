@@ -72,6 +72,7 @@ b5fab20eb4f8        ansible/awx_web:latest    "/tini -- /bin/sh -c "   25 hours 
 79e86d4d12ff        memcached:alpine          "docker-entrypoint.sh"   25 hours ago        Up 47 minutes       11211/tcp                            memcached
 91561b53f030        rabbitmq:3                "docker-entrypoint.sh"   25 hours ago        Up 47 minutes       4369/tcp, 5671-5672/tcp, 25672/tcp   rabbitmq
 cb8d1ac80197        postgres:9.6              "docker-entrypoint.sh"   25 hours ago        Up 47 minutes       5432/tcp                             postgres
+### Tail the the awx_task log ###
 # docker logs -f awx_task
 ```
 
