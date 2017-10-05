@@ -94,11 +94,11 @@ Step4. http://HOSTNAME_OF_AWX/ にアクセスするとログイン画面が表�
 AWXの使い方は[Ansible Towerのユーザガイド](http://docs.ansible.com/ansible-tower/latest/html/userguide/index.html)をご参照ください。
 
 ## AWXのAPI
-REST APIを使えます。http://HOSTNAME_OF_AWX/api/{v1,v2}/ にアクセスすることで、どんなAPIが用意されているか参照できます。
+REST APIを使えます。http://HOSTNAME_OF_AWX/api/ にアクセスすることで、どんなAPIが用意されているか参照できます。詳細は[Ansible TowerのAPIガイド](http://docs.ansible.com/ansible-tower/latest/html/towerapi/index.html)をご参照下さい。
 
 <img src="https://github.com/h-kojima/ansible/blob/master/awx/images/awx-api-v2.png" width="100%" height="100%">
 
-v1とv2がありますが、現時点での両者の違いは"credential_types"を参照できるか否かとなります。v2でしか"credential_types"を参照できないので、ご注意ください。
+[](v1とv2がありますが、現時点での両者の違いは"credential_types"を参照できるか否かとなります。v2でしか"credential_types"を参照できないので、ご注意ください。)
 
 ## Revision History
 2017-10-03 初版リリース
