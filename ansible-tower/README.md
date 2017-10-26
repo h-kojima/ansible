@@ -38,8 +38,7 @@ Ansible Towerは[Ansible](http://docs.ansible.com/ansible/index.html)による�
 ・継続的改善/デリバリー(Continuous Integration/Delivery)を考慮した自動化処理のワークフローを作成したい。
   
 なお、現状のAnsible Towerでは名前空間を考慮していないので、マルチテナントには対応していません。  
-例えば、会社/部署毎に重複する名前のリソース(Inventoryなど)をAnsible Towerで作成する  
-といったことはできませんので、ご注意ください。
+例えば、会社/部署毎に重複する名前のリソース(Inventoryなど)をAnsible Towerで作成するといったことはできませんので、ご注意ください。
 
 Ansible Towerは、Red Hatによりサポートされる有償の製品となります。ライフサイクルは[こちら](https://access.redhat.com/articles/2919301)をご参照ください。
 
