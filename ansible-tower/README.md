@@ -34,11 +34,11 @@ Ansible Towerは[Ansible](http://docs.ansible.com/ansible/index.html)による�
 ・Ansibleの知識をあまり知らなくても、開発者が用意したPlaybookを誰でもGUI/CLI/REST APIから簡単に実行できるようにしたい。  
 ・各部署が開発したPlaybookを連携して実行させるために、API経由で適切な権限を持ったユーザが簡単に実行できるようにしたい。  
 ・管理対象のホスト情報を可視化して、Playbookによる変更履歴を追跡したい。  
-・管理対象機器に接続するための認証情報を暗号化して、セキュリティを向上したい。
+・管理対象機器に接続するための認証情報を暗号化するだけでなく、データベースに隠蔽するなどしてセキュリティを向上したい。
 
-Ansible Towerの基盤にはAnsibleを利用していますが、Ansibleの代替品ではありません。  
+~~Ansible Towerの基盤にはAnsibleを利用していますが、Ansibleの代替品ではありません。  
 現段階では、汎用性を考えてAnsibleだけでできること([条件分岐](http://docs.ansible.com/ansible/playbooks_conditionals.html)や[GitHubのサービスフックの利用](http://docs.ansible.com/ansible/github_hooks_module.html)など)  
-は可能な限りAnsibleだけで実行する方がいいでしょう。  
+は可能な限りAnsibleだけで実行する方がいいでしょう。  ~~
   
 なお、現状のAnsible Towerでは名前空間を考慮していないので、マルチテナントには対応していません。  
 例えば、会社/部署毎に重複する名前のリソース(Inventoryなど)をAnsible Towerで作成する  
