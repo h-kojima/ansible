@@ -15,7 +15,7 @@
 # AWX
 
 ## AWXの概要
-[AWX](https://github.com/ansible/awx)はAnsible TowerのOSSコミュニティ版ソフトウェアです。Ansible Towerについての概要は[こちら](https://github.com/h-kojima/ansible/tree/master/ansible-tower#ansible-tower%E3%81%AE%E6%A6%82%E8%A6%81)をご参照ください。AWXは2週間毎のリリースを予定しており、本番環境での利用は想定しておりません。こうした情報をまとめた[FAQ](https://www.ansible.com/awx-project-faq)がありますので、ご参照ください。
+[AWX](https://github.com/ansible/awx)はAnsible TowerのOSSコミュニティ版ソフトウェアです。Ansible Towerについての概要は[こちら](https://github.com/h-kojima/ansible/tree/master/ansible-tower#ansible-tower%E3%81%AE%E6%A6%82%E8%A6%81)をご参照ください。AWXは2週間毎のリリースを予定しており、本番環境での利用は想定しておりません。機能開発を重視するならAWX、冗長化やアップデートなどの運用面を重視するならAnsible Tower、というような使い分けが良いでしょう。こうした情報をまとめた[FAQ](https://www.ansible.com/awx-project-faq)がありますので、ご参照ください。
 
 ## AWXのインストール
 Step1. 最新版のRHEL7またはCentOS7サーバを1台(物理でも仮想でも可)用意します。  
